@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The White City Thirty — Israeli Jazz, Vocal Jazz &amp; Bossa</title>
 <meta name="description" content="A ranked portal of 30 essential Israeli jazz, vocal jazz and bossa nova recordings — from Matti Caspi's Brazilian project to the modern Tel Aviv–New York wave. Search, filter by style, and listen.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23F7F2E6'/%3E%3Ccircle cx='50' cy='50' r='45' fill='%230F454F'/%3E%3Ccircle cx='50' cy='50' r='34' fill='none' stroke='%2312525d' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='26' fill='none' stroke='%2312525d' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%23E8AF0E'/%3E%3Ccircle cx='50' cy='50' r='3.5' fill='%23F7F2E6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -137,12 +138,11 @@ main{padding:0 6vw 90px}
 }
 .track.top .rank{color:var(--sun);-webkit-text-stroke:1.5px var(--ink)}
 .title{
-  font-size:19px;font-weight:900;line-height:1.25;
-  unicode-bidi:plaintext;
+  font-size:19px;font-weight:900;line-height:1.25;text-align:left;
 }
-.artist{font-size:14px;font-weight:500;color:var(--sea);unicode-bidi:plaintext}
+.artist{font-size:14px;font-weight:500;color:var(--sea);text-align:left}
 .note{font-size:13px;margin-top:4px;max-width:52ch}
-.album{font-size:14px;font-weight:500;unicode-bidi:plaintext}
+.album{font-size:14px;font-weight:500;text-align:left}
 .album .yr{
   display:inline-block;margin-inline-start:8px;
   font-size:12px;font-weight:700;color:var(--paper);
@@ -295,11 +295,11 @@ function render(){
     return `<article class="track${rank<=5?' top':''}">
       <div class="rank">${String(rank).padStart(2,'0')}</div>
       <div class="tt">
-        <h2 class="title">${esc(title)}</h2>
-        <p class="artist">${esc(artist)}</p>
+        <h2 class="title"><bdi>${esc(title)}</bdi></h2>
+        <p class="artist"><bdi>${esc(artist)}</bdi></p>
         ${note?`<p class="note">${esc(note)}</p>`:''}
       </div>
-      <div class="album">${esc(album)}<span class="yr">${year}</span></div>
+      <div class="album"><bdi>${esc(album)}</bdi><span class="yr">${year}</span></div>
       <div class="style">${esc(style)}</div>
       <div class="links">
         <a class="listen" href="${ytLink(t)}" target="_blank" rel="noopener">YouTube&nbsp;↗</a>
