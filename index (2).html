@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The White City Thirty — Israeli Jazz, Vocal Jazz &amp; Bossa</title>
+<meta name="description" content="A ranked portal of 30 essential Israeli jazz, vocal jazz and bossa nova recordings — from Matti Caspi's Brazilian project to the modern Tel Aviv–New York wave. Search, filter by style, and listen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F2E6;      /* sun-bleached plaster */
+  --ink:#0F454F;        /* deep sea teal */
+  --sea:#0E7C97;        /* mediterranean blue */
+  --sun:#E8AF0E;        /* tel aviv sun */
+  --line:#D9CFB8;       /* sand hairline */
+  --white:#FFFDF7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Heebo',system-ui,sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Hero ---------- */
+header{
+  border-bottom:5px solid var(--ink);
+  padding:44px 6vw 34px;
+  position:relative;
+  overflow:hidden;
+}
+.kicker{
+  display:flex;align-items:center;gap:14px;
+  font-size:13px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--sea);
+}
+.kicker::before{content:"";display:block;width:42px;height:4px;background:var(--sun)}
+h1{
+  font-family:'Karantina',sans-serif;
+  font-weight:700;
+  font-size:clamp(72px,15vw,196px);
+  line-height:.88;
+  letter-spacing:.01em;
+  margin:18px 0 6px;
+  text-transform:uppercase;
+  display:flex;align-items:center;flex-wrap:wrap;column-gap:.14em;
+}
+/* the zero of "30" is a spinning vinyl with a sun-gold label */
+.vinyl{
+  --d:clamp(60px,12.2vw,160px);
+  width:var(--d);height:var(--d);
+  border-radius:50%;
+  background:
+    radial-gradient(circle at center,
+      var(--sun) 0 26%,
+      var(--ink) 26.5% 34%,
+      #12525d 34% 38%, var(--ink) 38% 44%,
+      #12525d 44% 48%, var(--ink) 48% 56%,
+      #12525d 56% 60%, var(--ink) 60% 100%);
+  position:relative;
+  display:inline-block;
+  animation:spin 9s linear infinite;
+  flex:none;
+  transform:translateY(4%);
+}
+.vinyl::after{
+  content:"";position:absolute;inset:0;margin:auto;
+  width:7%;height:7%;border-radius:50%;background:var(--paper);
+}
+@keyframes spin{to{transform:translateY(4%) rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.vinyl{animation:none}}
+.sub{
+  max-width:640px;
+  font-size:clamp(15px,1.6vw,18px);
+  font-weight:500;
+}
+.sub b{color:var(--sea)}
+.he{
+  font-weight:900;
+  margin-top:4px;
+  color:var(--sea);
+  font-size:clamp(14px,1.5vw,17px);
+}
+
+/* ---------- Controls ---------- */
+.controls{
+  position:sticky;top:0;z-index:10;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+  padding:14px 6vw;
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+}
+.search{
+  flex:1 1 240px;max-width:380px;position:relative;
+}
+.search input{
+  width:100%;
+  border:2px solid var(--ink);
+  background:var(--white);
+  padding:10px 14px;
+  font:inherit;font-weight:500;
+  color:var(--ink);
+  border-radius:0;
+}
+.search input:focus{outline:3px solid var(--sun);outline-offset:1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  font:inherit;font-size:13px;font-weight:700;
+  letter-spacing:.04em;
+  border:2px solid var(--ink);
+  background:transparent;color:var(--ink);
+  padding:7px 13px;cursor:pointer;border-radius:0;
+}
+.chip:hover{background:var(--sun)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.chip:focus-visible{outline:3px solid var(--sun);outline-offset:1px}
+.count{margin-inline-start:auto;font-size:13px;font-weight:500;color:var(--sea)}
+
+/* ---------- List ---------- */
+main{padding:0 6vw 90px}
+.track{
+  display:grid;
+  grid-template-columns:74px minmax(0,2.2fr) minmax(0,1.4fr) 130px 190px;
+  gap:20px;align-items:center;
+  padding:20px 0;
+  border-bottom:1px solid var(--line);
+}
+.track.top{border-bottom:1px solid var(--ink)}
+.rank{
+  font-family:'Karantina',sans-serif;font-weight:700;
+  font-size:52px;line-height:1;color:var(--sea);
+}
+.track.top .rank{color:var(--sun);-webkit-text-stroke:1.5px var(--ink)}
+.title{
+  font-size:19px;font-weight:900;line-height:1.25;
+  unicode-bidi:plaintext;
+}
+.artist{font-size:14px;font-weight:500;color:var(--sea);unicode-bidi:plaintext}
+.note{font-size:13px;margin-top:4px;max-width:52ch}
+.album{font-size:14px;font-weight:500;unicode-bidi:plaintext}
+.album .yr{
+  display:inline-block;margin-inline-start:8px;
+  font-size:12px;font-weight:700;color:var(--paper);
+  background:var(--sea);padding:1px 7px;
+}
+.style{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.links{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.listen{
+  font-size:12.5px;font-weight:700;letter-spacing:.03em;
+  text-decoration:none;color:var(--ink);
+  border:2px solid var(--ink);
+  padding:7px 10px;white-space:nowrap;
+}
+.listen:hover{background:var(--ink);color:var(--paper)}
+.listen.sp:hover{background:#1DB954;border-color:#1DB954;color:#fff}
+.listen:focus-visible{outline:3px solid var(--sun);outline-offset:1px}
+
+.empty{display:none;padding:60px 0;text-align:center}
+.empty h2{font-family:'Karantina',sans-serif;font-size:44px;text-transform:uppercase}
+.empty button{
+  margin-top:14px;font:inherit;font-weight:700;
+  background:var(--sun);border:2px solid var(--ink);
+  padding:9px 18px;cursor:pointer;
+}
+
+footer{
+  border-top:5px solid var(--ink);
+  padding:26px 6vw;font-size:13px;font-weight:500;color:var(--sea);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+footer b{color:var(--ink)}
+
+@media (max-width:900px){
+  .track{grid-template-columns:54px 1fr;grid-template-rows:auto auto auto;row-gap:8px}
+  .rank{font-size:40px;grid-row:1 / span 3}
+  .album,.style{grid-column:2}
+  .links{grid-column:2;justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">A sister site to The Blue Hundred · Israel edition</p>
+  <h1><span>The White City</span><span aria-label="30">3<span class="vinyl" role="img" aria-hidden="true"></span></span></h1>
+  <p class="sub">Thirty essential recordings from Israel's jazz story — the <b>Tel Aviv–New York</b> modern wave, the vocalists, and the Hebrew bossa nova that Matti Caspi and Ehud Manor imported from Rio in 1978. Ranked, searchable, and one click from listening.</p>
+  <p class="he">שלושים הקלטות — ג׳אז, ווקאל ובוסה נובה מישראל</p>
+</header>
+
+<div class="controls">
+  <div class="search"><input id="q" type="search" placeholder="Search title, artist, album…" aria-label="Search tracks"></div>
+  <div class="chips" id="chips" role="group" aria-label="Filter by style"></div>
+  <div class="count" id="count"></div>
+</div>
+
+<main>
+  <div id="rows"></div>
+  <div class="empty" id="empty">
+    <h2>Nothing on this side</h2>
+    <p>No tracks match <span id="emptyQ"></span>.</p>
+    <button id="reset">Reset filters</button>
+  </div>
+</main>
+
+<footer>
+  <div><b>The White City Thirty</b> — a curated, opinionated list. Argue with it loudly.</div>
+  <div>Static single file · no build step · deployable anywhere</div>
+</footer>
+
+<script>
+/* [rank, title, artist, album, year, style, note] */
+const TRACKS=[
+[1,"Remembering","Avishai Cohen Trio","Gently Disturbed",2008,"Modern Jazz","The cornerstone of the Israeli wave — Cohen, Shai Maestro and Mark Guiliana at their tightest."],
+[2,"סמבה בשניים","מתי כספי ויהודית רביץ","ארץ טרופית יפה",1978,"Bossa & Brazil","Baden Powell's samba in Ehud Manor's Hebrew — the definitive Israeli bossa duet."],
+[3,"Alfonsina y el Mar","Avishai Cohen","Aurora",2009,"Vocal Jazz","The bassist steps to the microphone; a haunted Argentine ballad reborn."],
+[4,"The Dream Thief","Shai Maestro","The Dream Thief",2018,"Chamber Jazz","Maestro's breakout as a leader — patient, cinematic trio music."],
+[5,"ארץ טרופית יפה","מתי כספי, יהודית רביץ והפרברים","ארץ טרופית יפה",1978,"Bossa & Brazil","Jorge Ben's 'País Tropical' relocated to the Mediterranean; a national earworm ever since."],
+[6,"Dark Nights, Darker Days","Avishai Cohen (trumpet)","Dark Nights",2014,"Modern Jazz","The other Avishai Cohen — smoky, late-night trumpet noir with Triveni."],
+[7,"Toxic","Yaron Herman","A Time for Everything",2007,"Modern Jazz","Britney Spears deconstructed into a piano-trio thriller; the cover that made his name."],
+[8,"Beautiful That Way","Noa (Achinoam Nini)","Life Is Beautiful (soundtrack)",1998,"Vocal Jazz","Noa's voice over Piovani's Oscar-winning theme — Israel's most famous vocal export."],
+[9,"Seven Seas","Avishai Cohen","Seven Seas",2011,"Modern Jazz","Groove, Ladino echoes and choir-like vocals in one signature piece."],
+[10,"Do Re Mi Fa Sol","Gilad Hekselman","Ask for Chaos",2018,"Modern Jazz","One of New York's most lyrical guitarists, playful with something so simple."],
+[11,"Miniature","Oded Tzur","Here Be Dragons",2020,"Chamber Jazz","Raga-inflected saxophone on ECM — a whisper that fills the room."],
+[12,"Alegria da Casa","Anat Cohen & Trio Brasileiro","Alegria da Casa",2016,"Bossa & Brazil","The Tel Aviv clarinetist inside Brazilian choro — Grammy-nominated joy."],
+[13,"New Soul","Yael Naim","Yael Naim",2007,"Vocal Jazz","The jazz-schooled Parisian-Israeli song that conquered the world (and an Apple ad)."],
+[14,"Maroc","Avital Meets Avital (Omer & Avi Avital)","Avital Meets Avital",2017,"Groove & World","Oud-bass meets mandolin — Andalusian grooves with jazz muscle."],
+[15,"Morenika","Avishai Cohen","Aurora",2009,"Vocal Jazz","A Ladino lullaby carried from Sephardic Spain into the concert hall."],
+[16,"Life Happens","Ester Rada","Ester Rada",2014,"Groove & World","Ethio-jazz and soul from Netanya — horns, groove and grit."],
+[17,"Can't Stop Running","Adam Ben Ezra","Can't Stop Running",2015,"Groove & World","One man, one double bass, a loop pedal — the clip that went round the world."],
+[18,"The Bell","Shalosh","The Bell",2018,"Groove & World","A piano trio that thinks it's a rock band; Tel Aviv club energy on record."],
+[19,"New Song","Omer Avital","New Song",2014,"Modern Jazz","The godfather of the scene — Moroccan-Yemenite roots inside hard-swinging quintet music."],
+[20,"La Vie en Rose","Anat Cohen","Claroscuro",2012,"Chamber Jazz","The clarinet sings Piaf — tenderness as virtuosity."],
+[21,"Not Going Anywhere","Keren Ann","Not Going Anywhere",2003,"Vocal Jazz","Hushed, jazz-tinged chanson from the Israeli-French songwriter."],
+[22,"Israeli Song","Eli Degibri","Israeli Song",2010,"Modern Jazz","Degibri with Brad Mehldau, Ron Carter and Al Foster — a Hebrew melody among giants."],
+[23,"First Rays","Nitai Hershkovits","Call on the Old Wise",2023,"Chamber Jazz","Solo piano on ECM from Avishai Cohen's former wingman — dawn light in sound."],
+[24,"Middle Eastern Sunset","Anat Fort Trio","A Long Story",2007,"Chamber Jazz","The first Israeli leader on ECM; exactly what the title promises."],
+[25,"Broken Vessels","Itamar Borochov","Blue Nights",2018,"Modern Jazz","Trumpet that prays — Jaffa maqam feeling inside a New York quartet."],
+[26,"Jat Mahibathi","Yemen Blues","Yemen Blues",2011,"Groove & World","Ravid Kahalani's Yemenite funk explosion — jazz players, ancient voice."],
+[27,"בוא לריו","יהודית רביץ","בוא לריו",1988,"Bossa & Brazil","Ravitz kept the Brazilian flame after 1978 — an album-length love letter to Rio."],
+[28,"אושר","מתי כספי","ארץ טרופית יפה",1978,"Bossa & Brazil","Caspi solo on the same landmark project — melancholy dressed as sunshine."],
+[29,"Sleepwalkers","Omer Klein","Sleepwalkers",2017,"Modern Jazz","Elegant, melodic trio writing from the Düsseldorf-based pianist."],
+[30,"Shalom Aleichem","Daniel Zamir","Amen",2006,"Modern Jazz","Spiritual jazz, Sabbath melody, soprano sax — where the synagogue meets Coltrane."]
+];
+
+const STYLE_ORDER=["Modern Jazz","Chamber Jazz","Vocal Jazz","Bossa & Brazil","Groove & World"];
+
+const qEl=document.getElementById('q');
+const rowsEl=document.getElementById('rows');
+const chipsEl=document.getElementById('chips');
+const countEl=document.getElementById('count');
+const emptyEl=document.getElementById('empty');
+const emptyQ=document.getElementById('emptyQ');
+let activeStyle=null;
+
+const allChip=document.createElement('button');
+allChip.className='chip';allChip.textContent='All';
+allChip.setAttribute('aria-pressed','true');
+allChip.onclick=()=>{activeStyle=null;syncChips();render();};
+chipsEl.appendChild(allChip);
+STYLE_ORDER.forEach(s=>{
+  const b=document.createElement('button');
+  b.className='chip';b.textContent=s;b.dataset.style=s;
+  b.setAttribute('aria-pressed','false');
+  b.onclick=()=>{activeStyle=(activeStyle===s?null:s);syncChips();render();};
+  chipsEl.appendChild(b);
+});
+function syncChips(){
+  allChip.setAttribute('aria-pressed',String(activeStyle===null));
+  chipsEl.querySelectorAll('[data-style]').forEach(b=>{
+    b.setAttribute('aria-pressed',String(b.dataset.style===activeStyle));
+  });
+}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function ytLink(t){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(t[2]+' '+t[1]);}
+function spLink(t){return 'https://open.spotify.com/search/'+encodeURIComponent(t[1]+' '+t[2]);}
+
+function render(){
+  const q=qEl.value.trim().toLowerCase();
+  const shown=TRACKS.filter(t=>{
+    if(activeStyle&&t[5]!==activeStyle)return false;
+    if(q){
+      const hay=(t[1]+' '+t[2]+' '+t[3]+' '+t[4]+' '+t[5]+' '+t[6]).toLowerCase();
+      if(!hay.includes(q))return false;
+    }
+    return true;
+  });
+  rowsEl.innerHTML=shown.map(t=>{
+    const[rank,title,artist,album,year,style,note]=t;
+    return `<article class="track${rank<=5?' top':''}">
+      <div class="rank">${String(rank).padStart(2,'0')}</div>
+      <div class="tt">
+        <h2 class="title">${esc(title)}</h2>
+        <p class="artist">${esc(artist)}</p>
+        ${note?`<p class="note">${esc(note)}</p>`:''}
+      </div>
+      <div class="album">${esc(album)}<span class="yr">${year}</span></div>
+      <div class="style">${esc(style)}</div>
+      <div class="links">
+        <a class="listen" href="${ytLink(t)}" target="_blank" rel="noopener">YouTube&nbsp;↗</a>
+        <a class="listen sp" href="${spLink(t)}" target="_blank" rel="noopener">Spotify&nbsp;↗</a>
+      </div>
+    </article>`;
+  }).join('');
+  countEl.innerHTML=`Showing <b>${shown.length}</b> of 30`;
+  const none=shown.length===0;
+  emptyEl.style.display=none?'block':'none';
+  if(none)emptyQ.textContent=q?`“${qEl.value.trim()}”`:'these filters';
+}
+
+qEl.addEventListener('input',render);
+document.getElementById('reset').onclick=()=>{qEl.value='';activeStyle=null;syncChips();render();};
+render();
+</script>
+</body>
+</html>
